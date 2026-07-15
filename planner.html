@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Okome Ifeanyi Jonathan</title>
-<meta name="description" content="Get in touch with Okome Ifeanyi Jonathan for repairs, network security questions, or collaboration.">
+<title>Academic Planner — Okome Ifeanyi Jonathan</title>
+<meta name="description" content="Interactive academic and study task planner for Okome Ifeanyi Jonathan's coursework, certifications, and internship deliverables.">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -24,8 +24,8 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="planner.html">Planner</a></li>
-      <li><a href="contact.html" aria-current="page">Contact</a></li>
+      <li><a href="planner.html" aria-current="page">Planner</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 </header>
@@ -35,56 +35,76 @@
   <section class="hero" style="padding:56px 0;">
     <div class="container" style="grid-template-columns:1fr;">
       <div>
-        <p class="eyebrow">Contact</p>
-        <h1>Let's connect</h1>
-        <p class="hero-lede">Have a repair, a network question, or an opportunity in mind? Send a message and I'll get back to you within 1–2 business days.</p>
+        <p class="eyebrow">Academic planner</p>
+        <h1>Keep coursework, study goals, and deadlines in one place</h1>
+        <p class="hero-lede">Add a task, track it while it's active, and move it to done when it's finished. Tasks are saved in this browser, so your board is still here next time you visit.</p>
       </div>
     </div>
   </section>
 
-  <section aria-labelledby="contact-heading">
-    <div class="container two-col">
-      <div class="reveal">
-        <p class="eyebrow">Reach me directly</p>
-        <h2 id="contact-heading">Contact details</h2>
-        <ul class="check-list">
-          <li>Email: <a href="mailto:Ifywilsonjoe@gmail.com">Ifywilsonjoe@gmail.com</a></li>
-          <li>Phone: <a href="tel:+2349036039035">+234 903 603 9035</a></li>
-          <li>Location: Lagos, Nigeria</li>
-          <li>GitHub: <a href="https://github.com/Cybernerdify" target="_blank" rel="noopener">Cybernerdify ↗</a></li>
-          <li>LinkedIn: <a href="https://www.linkedin.com/in/ifeanyijonathanokome" target="_blank" rel="noopener">ifeanyijonathanokome ↗</a></li>
-        </ul>
-      </div>
+  <section aria-labelledby="planner-heading">
+    <div class="container">
+      <h2 id="planner-heading" style="position:absolute;left:-9999px;">Task planner</h2>
 
-      <div class="card reveal">
-        <h3 style="margin-top:0;">Send a message</h3>
-        <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+      <div class="planner-board">
+        <form class="task-form" id="task-form" novalidate>
+          <h3 style="margin-top:0;font-size:1.05rem;">Add a task</h3>
 
-        <form id="contact-form" novalidate>
           <div class="form-grid">
             <div class="field">
-              <label for="cf-name">Full name</label>
-              <input type="text" id="cf-name" name="name" autocomplete="name" required>
-              <p class="error-msg" id="err-name"></p>
+              <label for="task-title">Task title</label>
+              <input type="text" id="task-title" name="title" placeholder="e.g. Read CCNA Chapter 4" required>
             </div>
             <div class="field">
-              <label for="cf-email">Email address</label>
-              <input type="email" id="cf-email" name="email" autocomplete="email" required>
-              <p class="error-msg" id="err-email"></p>
+              <label for="task-course">Course or subject</label>
+              <input type="text" id="task-course" name="course" placeholder="e.g. Networking, COS 106">
             </div>
             <div class="field">
-              <label for="cf-phone">Phone number</label>
-              <input type="tel" id="cf-phone" name="phone" autocomplete="tel" placeholder="Digits only, e.g. 2349036039035" required>
-              <p class="error-msg" id="err-phone"></p>
+              <label for="task-due">Due date</label>
+              <input type="date" id="task-due" name="due">
             </div>
             <div class="field">
-              <label for="cf-message">Message</label>
-              <textarea id="cf-message" name="message" rows="5" required></textarea>
-              <p class="error-msg" id="err-message"></p>
+              <label for="task-priority">Priority</label>
+              <select id="task-priority" name="priority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Send message</button>
+            <button type="submit" class="btn btn-primary btn-block">Add task</button>
           </div>
         </form>
+
+        <div>
+          <div class="task-columns">
+            <div class="task-col">
+              <h3>To do (<span id="todo-count">0</span>)</h3>
+              <ul class="task-list" id="todo-list"></ul>
+              <p class="empty-state" id="todo-empty">Nothing pending — add a task on the left to get started.</p>
+            </div>
+            <div class="task-col">
+              <h3>Completed (<span id="done-count">0</span>)</h3>
+              <ul class="task-list" id="done-list"></ul>
+              <p class="empty-state" id="done-empty">Completed tasks will appear here.</p>
+              <button type="button" class="btn btn-outline" id="clear-done" style="margin-top:14px;">Clear completed</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container two-col">
+      <div class="reveal">
+        <p class="eyebrow">How it works</p>
+        <h2>Built for real coursework</h2>
+        <p>Every task carries a course label, an optional due date, and a priority level, so the board doubles as a lightweight study log across COS 106, Security+ revision, and CCNA preparation.</p>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">Data &amp; privacy</p>
+        <h2>Where your tasks live</h2>
+        <p>Tasks are stored locally in your browser using <code>localStorage</code> — nothing is sent to a server. Clearing your browser data will reset the board.</p>
       </div>
     </div>
   </section>
